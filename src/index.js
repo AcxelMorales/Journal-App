@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import './scss/styles.scss';
+
+import { JournalApp } from './JournalApp';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <JournalApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
