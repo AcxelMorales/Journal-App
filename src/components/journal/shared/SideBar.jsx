@@ -10,7 +10,7 @@ export const SideBar = () => {
           <i className="far fa-moon"></i>
           <span> Acxel Morales</span>
         </h3>
-        <button className="btn">Logout</button>
+        <button className="btn mt-5">Logout</button>
       </div>
       <div className="journal__new-entry">
         <i className="far fa-calendar-plus fa-5x"></i>
