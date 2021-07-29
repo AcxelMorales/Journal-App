@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 
-import { login } from '../../actions/auth';
+import { startLoginEmailPassword } from '../../actions/auth';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -18,8 +18,7 @@ export const LoginScreen = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-
-    dispatch(login(155277, 'Acxel'));
+    dispatch(startLoginEmailPassword());
   };
 
   return (
