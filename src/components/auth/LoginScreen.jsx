@@ -9,7 +9,7 @@ import { login } from '../../actions/auth';
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const [formValues, handleInputChange, reset] = useForm({
+  const [formValues, handleInputChange] = useForm({
     email: 'acxel@email.com',
     password: 123456,
   });
