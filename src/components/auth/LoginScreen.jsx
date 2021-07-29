@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 
-import { login } from '../../actions/auth';
+import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,10 @@ export const LoginScreen = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-
-    dispatch(login(155277, 'Acxel'));
+    dispatch(startLoginEmailPassword());
   };
+
+  const handleGoogleLogin = () => dispatch(startGoogleLogin());
 
   return (
     <>
@@ -49,7 +50,7 @@ export const LoginScreen = () => {
         </button>
         <div className="auth__social-networks">
           <p>Login with social networks</p>
-          <div className="google-btn">
+          <div className="google-btn" onClick={handleGoogleLogin}>
             <div className="google-icon-wrapper">
               <img
                 className="google-icon"
