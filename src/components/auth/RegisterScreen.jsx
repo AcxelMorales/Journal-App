@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 
@@ -9,6 +9,7 @@ import { setError, removeError } from '../../actions/ui';
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
+  const { msjError } = useSelector(({ ui }) => ui);
 
   //TODO: Eliminar data hardcode
   const [{ name, email, password, passwordConfirm }, handleInputChange] = useForm({
@@ -48,9 +49,9 @@ export const RegisterScreen = () => {
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleOnSubmit}>
-        <div className="auth__error-alert">
-          Hola mundo
-        </div>
+        {msjError && <div className="auth__error-alert">
+          {msjError}
+        </div>}
         <input
           type="text"
           autoComplete="off"
