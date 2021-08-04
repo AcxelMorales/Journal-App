@@ -9,6 +9,7 @@ import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
+  //TODO: Eliminar data hardcode
   const [formValues, handleInputChange] = useForm({
     email: 'acxel@email.com',
     password: 123456,
