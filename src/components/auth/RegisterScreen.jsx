@@ -8,6 +8,8 @@ import { useForm } from '../../hooks/useForm';
 import { setError, removeError } from '../../actions/ui';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 
+import { Alert } from '../shared/Alert';
+
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
   const { msjError } = useSelector(({ ui }) => ui);
@@ -50,9 +52,7 @@ export const RegisterScreen = () => {
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleOnSubmit}>
-        {msjError && <div className="auth__error-alert">
-          {msjError}
-        </div>}
+        {msjError && <Alert msjError={msjError} />}
         <input
           type="text"
           autoComplete="off"
