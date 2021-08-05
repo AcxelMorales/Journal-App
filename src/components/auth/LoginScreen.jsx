@@ -12,7 +12,7 @@ import { Alert } from '../shared/Alert';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
-  const { msjError } = useSelector(({ ui }) => ui);
+  const { msjError, loading } = useSelector(({ ui }) => ui);
 
   //TODO: Eliminar data hardcode
   const [formValues, handleInputChange] = useForm({
@@ -69,7 +69,7 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary btn-block" type="submit">
+        <button disabled={loading} className="btn btn-primary btn-block" type="submit">
           Login
         </button>
         <div className="auth__social-networks">

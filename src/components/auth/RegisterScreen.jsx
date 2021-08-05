@@ -12,7 +12,7 @@ import { Alert } from '../shared/Alert';
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
-  const { msjError } = useSelector(({ ui }) => ui);
+  const { msjError, loading } = useSelector(({ ui }) => ui);
 
   //TODO: Eliminar data hardcode
   const [{ name, email, password, passwordConfirm }, handleInputChange] = useForm({
@@ -89,7 +89,7 @@ export const RegisterScreen = () => {
           value={passwordConfirm}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary btn-block mb-5" type="submit">
+        <button disabled={loading} className="btn btn-primary btn-block mb-5" type="submit">
           Register
         </button>
         <Link to="/auth/login">¿Already registered?</Link>
