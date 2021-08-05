@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { AuthRouter } from './AuthRouter';
@@ -13,6 +8,9 @@ import { JournalScreen } from '../components/journal/JournalScreen';
 import { firebase } from '../firebase/firebase-config';
 
 import { login } from '../actions/auth';
+
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -33,9 +31,7 @@ export const AppRouter = () => {
   }, [dispatch, setChecking]);
 
   if (checking) {
-    return (
-      <h1>Waiting...</h1>
-    );
+    return <h1>Waiting...</h1>;
   }
 
   return (
@@ -43,9 +39,17 @@ export const AppRouter = () => {
       <Router>
         <div>
           <Switch>
-            <Route path="/auth" component={AuthRouter} />
-            <Route path="/" exact component={JournalScreen} />
-            <Redirect to="/auth/login" />
+            <PublicRoute
+              isLoggedIn={isLoggedIn}
+              exact
+              path="/auth/login"
+              component={AuthRouter}
+            />
+            <PrivateRoute
+              isLoggedIn={isLoggedIn}
+              path="/"
+              component={JournalScreen}
+            />
           </Switch>
         </div>
       </Router>
