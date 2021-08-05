@@ -2,11 +2,39 @@ import { types } from '../types/types';
 
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 
+import { startLoading, finishLoading } from './ui';
+
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(login(123456, 'José'));
-    }, 3500);
+    dispatch(startLoading());
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user: { uid, displayName } }) => {
+        dispatch(login(uid, displayName));
+        dispatch(finishLoading());
+      })
+      .catch(() => dispatch(finishLoading()));
+  };
+};
+
+export const startRegisterWithEmailPasswordName = (name, email, password) => {
+  return (dispatch) => {
+    dispatch(startLoading());
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async ({ user }) => {
+        await user.updateProfile({
+          displayName: name,
+        });
+
+        dispatch(login(user.uid, user.displayName));
+        dispatch(finishLoading());
+      })
+      .catch(() => dispatch(finishLoading()));
   };
 };
 

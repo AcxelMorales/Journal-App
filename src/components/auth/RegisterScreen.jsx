@@ -6,17 +6,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 
 import { setError, removeError } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
+
+import { Alert } from '../shared/Alert';
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
-  const { msjError } = useSelector(({ ui }) => ui);
+  const { msjError, loading } = useSelector(({ ui }) => ui);
 
   //TODO: Eliminar data hardcode
   const [{ name, email, password, passwordConfirm }, handleInputChange] = useForm({
     name: 'Acxel',
     email: 'acxel@email.com',
-    password: 123456,
-    passwordConfirm: 123456,
+    password: '123456',
+    passwordConfirm: '123456',
   });
 
   const handleOnSubmit = evt => {
@@ -25,7 +28,7 @@ export const RegisterScreen = () => {
     const valid = isFormValid();
 
     if (valid) {
-      console.log(true);
+      dispatch(startRegisterWithEmailPasswordName(name, email, password));
     }
   };
 
@@ -49,9 +52,7 @@ export const RegisterScreen = () => {
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleOnSubmit}>
-        {msjError && <div className="auth__error-alert">
-          {msjError}
-        </div>}
+        {msjError && <Alert msjError={msjError} />}
         <input
           type="text"
           autoComplete="off"
@@ -88,7 +89,7 @@ export const RegisterScreen = () => {
           value={passwordConfirm}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary btn-block mb-5" type="submit">
+        <button disabled={loading} className="btn btn-primary btn-block mb-5" type="submit">
           Register
         </button>
         <Link to="/auth/login">¿Already registered?</Link>
