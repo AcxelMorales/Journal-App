@@ -47,7 +47,7 @@ export const LoginScreen = () => {
   const handleGoogleLogin = () => dispatch(startGoogleLogin());
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn">
       <h3 className="auth__title">Login</h3>
       <form onSubmit={handleSubmit}>
         {msjError && <Alert msjError={msjError} />}
@@ -89,6 +89,6 @@ export const LoginScreen = () => {
         </div>
         <Link to="/auth/register">Create new account</Link>
       </form>
-    </>
+    </div>
   );
 };
