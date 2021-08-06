@@ -13,6 +13,9 @@ import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 
+import logoR from './svgs/j-r.svg';
+import logoL from './svgs/j-l.svg';
+
 export const AppRouter = () => {
   const dispatch = useDispatch();
   const [checking, setChecking] = useState(true);
@@ -37,6 +40,20 @@ export const AppRouter = () => {
 
   return (
     <>
+      {!isLoggedIn && (
+        <div className="auth__wrapper-img">
+          <img
+            className="routes__img routes__img-l"
+            src={logoR}
+            alt="svg-journal"
+          />
+          <img
+            className="routes__img routes__img-r"
+            src={logoL}
+            alt="svg-journal"
+          />
+        </div>
+      )}
       <Router>
         <div>
           <Switch>
