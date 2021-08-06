@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { AuthRouter } from './AuthRouter';
 import { JournalScreen } from '../components/journal/JournalScreen';
+import { Loader } from '../components/shared/loader/Loader';
 
 import { firebase } from '../firebase/firebase-config';
 
@@ -26,12 +27,12 @@ export const AppRouter = () => {
         setIsLoggedIn(false);
       }
 
-      setChecking(false);
+      setTimeout(() => setChecking(false), 1000);
     });
   }, [dispatch, setChecking]);
 
   if (checking) {
-    return <h1>Waiting...</h1>;
+    return <Loader />;
   }
 
   return (
