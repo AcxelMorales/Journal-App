@@ -1,10 +1,12 @@
 import React from 'react';
 
+import image from './svgs/no-selected.svg';
+
 export const NothingSelected = () => {
   return (
     <div className="nothing__main-content">
-      <p>Select something<br />or create an entry</p>
-      <i className="far fa-star fa-4x mt-5"></i>
+      <img className="nothing__img-waiting" src={image} alt="image-svg" />
+      <p>Select something or create an entry</p>
     </div>
   );
 };

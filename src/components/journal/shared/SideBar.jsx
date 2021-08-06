@@ -9,9 +9,7 @@ export const SideBar = () => {
   const dispatch = useDispatch();
   const { name } = useSelector(({ auth }) => auth);
 
-  const handleLogout = () => {
-    dispatch(startLogOut());
-  };
+  const handleLogout = () => dispatch(startLogOut());
 
   return (
     <aside className="journal__sidebar">
