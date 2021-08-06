@@ -14,10 +14,9 @@ export const LoginScreen = () => {
   const dispatch = useDispatch();
   const { msjError, loading } = useSelector(({ ui }) => ui);
 
-  //TODO: Eliminar data hardcode
   const [formValues, handleInputChange] = useForm({
-    email: 'acxel@email.com',
-    password: '123456',
+    email: '',
+    password: '',
   });
 
   const { email, password } = formValues;

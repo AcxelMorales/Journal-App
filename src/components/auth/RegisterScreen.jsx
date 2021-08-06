@@ -14,12 +14,11 @@ export const RegisterScreen = () => {
   const dispatch = useDispatch();
   const { msjError, loading } = useSelector(({ ui }) => ui);
 
-  //TODO: Eliminar data hardcode
   const [{ name, email, password, passwordConfirm }, handleInputChange] = useForm({
-    name: 'Acxel',
-    email: 'acxel@email.com',
-    password: '123456',
-    passwordConfirm: '123456',
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
 
   const handleOnSubmit = evt => {
