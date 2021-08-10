@@ -14,8 +14,12 @@ export const startNewNote = () => {
       date: new Date().getTime(),
     };
 
-    const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
-    dispatch(activeNote(docRef.id, newNote));
+    try {
+      const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
+      dispatch(activeNote(docRef.id, newNote));
+    } catch (error) {
+      console.log('Error en new note', error);
+    }
   };
 };
 
@@ -29,8 +33,12 @@ export const activeNote = (id, note) => ({
 
 export const startLoadingNotes = uid => {
   return async (dispatch) => {
-    const notes = await loadNotes(uid);
-    dispatch(setNotes(notes));
+    try {
+      const notes = await loadNotes(uid);
+      dispatch(setNotes(notes));
+    } catch (error) {
+      console.log('Error in loading notes', error);
+    }
   };
 };
 
