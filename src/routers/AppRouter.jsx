@@ -13,6 +13,8 @@ import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 
+import { startLoadingNotes } from '../actions/notes';
+
 import logoR from './svgs/j-r.svg';
 import logoL from './svgs/j-l.svg';
 
@@ -26,6 +28,7 @@ export const AppRouter = () => {
       if (userData?.uid) {
         dispatch(login(userData.uid, userData.displayName));
         setIsLoggedIn(true);
+        dispatch(startLoadingNotes(userData.uid));
       } else {
         setIsLoggedIn(false);
       }
