@@ -12,9 +12,7 @@ export const SideBar = () => {
 
   const handleLogout = () => dispatch(startLogOut());
 
-  const handleAddNew = () => {
-    dispatch(startNewNote());
-  };
+  const handleAddNew = () => dispatch(startNewNote());
 
   return (
     <aside className="journal__sidebar">
