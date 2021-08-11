@@ -3,6 +3,7 @@ import { types } from '../types/types';
 const initialState = {
   loading: false,
   msjError: null,
+  uploading: false,
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -27,6 +28,16 @@ export const uiReducer = (state = initialState, action) => {
         ...state,
         loading: false,
       };
+    case types.uiStartUploading:
+      return {
+        ...state,
+        uploading: true,
+      }
+    case types.uiFinishUploading:
+      return {
+        ...state,
+        uploading: false,
+      }
     default:
       return state;
   }

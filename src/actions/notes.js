@@ -6,6 +6,7 @@ import { loadNotes } from '../helpers/loadNote';
 import { fileUpload } from '../helpers/fileUpload';
 
 import { types } from '../types/types';
+import { finishUploading, startUploading } from './ui';
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -81,10 +82,12 @@ export const refreshNote = (id, note) => ({
   },
 });
 
-export const startUploading = file => {
+export const startUploadingAct = file => {
   return async (dispatch, getState) => {
+    dispatch(startUploading());
     const { active:activeNote } = getState().notes;
     const fileUrl = await fileUpload(file);
     console.log(fileUrl);
+    dispatch(finishUploading());
   };
 };

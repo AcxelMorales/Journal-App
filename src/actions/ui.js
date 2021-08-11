@@ -16,3 +16,11 @@ export const startLoading = () => ({
 export const finishLoading = () => ({
   type: types.uiFinishLoading
 });
+
+export const startUploading = () => ({
+  type: types.uiStartUploading
+});
+
+export const finishUploading = () => ({
+  type: types.uiFinishUploading
+});
