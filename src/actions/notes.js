@@ -1,8 +1,12 @@
+import Swal from 'sweetalert2';
+
 import { db } from '../firebase/firebase-config';
 
 import { loadNotes } from '../helpers/loadNote';
+import { fileUpload } from '../helpers/fileUpload';
 
 import { types } from '../types/types';
+import { finishUploading, startUploading } from './ui';
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -58,8 +62,32 @@ export const startSaveNote = note => {
 
     try {
       await db.doc(`/${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+      dispatch(refreshNote(note.id, noteToFirestore));
+      Swal.fire('Saved', note.title, 'success');
     } catch (error) {
       console.log('Error in save note', error);
+      Swal.fire('Error', 'Error in save note', 'error');
     }
+  };
+};
+
+export const refreshNote = (id, note) => ({
+  type: types.notesUpdated,
+  payload: {
+    id,
+    note: {
+      id,
+      ...note
+    }
+  },
+});
+
+export const startUploadingAct = file => {
+  return async (dispatch, getState) => {
+    dispatch(startUploading());
+    const { active:activeNote } = getState().notes;
+    const fileUrl = await fileUpload(file);
+    console.log(fileUrl);
+    dispatch(finishUploading());
   };
 };
