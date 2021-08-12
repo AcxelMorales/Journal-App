@@ -60,11 +60,12 @@
   overflow: hidden;
 
   .journal__entry-picture {
-    height: 75px;
-    width: 75px;
+    width: auto;
+    flex: 20%;
   }
 
   .journal__entry-body {
+    flex: 70%;
     padding: 10px;
   }
 
@@ -75,11 +76,14 @@
 
   .journal__entry-content {
     font-size: 10px;
+    height: 48px;
+    overflow: hidden;
   }
 
   .journal__entry-date-box {
     align-items: center;
     display: flex;
+    flex: 10%;
     flex-direction: column;
     justify-content: center;
     padding: 5px;
