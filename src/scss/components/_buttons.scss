@@ -16,6 +16,16 @@
   }
 }
 
+.btn-danger-p {
+  background-color: red;
+  border-radius: inherit !important;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: darken($color: red, $amount: 10);
+  }
+}
+
 .btn-primary {
   background-color: $primary;
   border-radius: 2px;
@@ -64,7 +74,7 @@
 
   .btn-text {
     float: right;
-    margin: 11px 40px 0 0;
+    margin: 11px 20px 0 0;
     color: $white;
     font-size: 14px;
     letter-spacing: 0.2px;

@@ -9,7 +9,7 @@ export const types = {
   uiStartUploading: '[UI] Start uploading',
   uiFinishUploading: '[UI] Finish uploading',
 
-  notesAddNes: '[NOTES] New note',
+  notesAddNew: '[NOTES] New note',
   notesActive: '[NOTES] Set active note',
   notesLoad: '[NOTES] Load notes',
   notesUpdated: '[NOTES] Updated note',
